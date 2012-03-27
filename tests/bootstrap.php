@@ -7,3 +7,4 @@ require $baseDir . '/Meta/Field.php';
 require $baseDir . '/Meta/Metadata.php';
 require $baseDir . '/Meta/Loader/ILoader.php';
 require $baseDir . '/Meta/Loader/NetteDatabaseLoader.php';
+require $baseDir . '/Builder.php';
