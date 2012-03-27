@@ -1,0 +1,22 @@
+{
+	"name": "JanMarek/NFormBuilder",
+	"description": "Universal form builder for Nette framework",
+	"keywords": ["form", "nette"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Jan Marek",
+			"email": "mail@janmarek.net"
+		}
+	],
+	"autoload": {
+		"psr-0": {
+			"NFormBuilder": ""
+		}
+	},
+	"require": {
+		"nette/nette": "*"
+	},
+	"recommend": {
+	}
+}
