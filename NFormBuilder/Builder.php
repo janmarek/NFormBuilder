@@ -16,7 +16,7 @@ class Builder
 	/** @var \NFormBuilder\Meta\Metadata */
 	private $metadata;
 
-	public function __construct(\Nette\Forms\Container $form, Meta\Metadata $metadata)
+	public function __construct(/*\Nette\Forms\Container*/ $form, Meta\Metadata $metadata)
 	{
 		$this->form = $form;
 		$this->metadata = $metadata;
@@ -35,7 +35,7 @@ class Builder
 		}
 	}
 
-	protected function addField(\Nette\Forms\Container $form, Field $field)
+	protected function addField(/*\Nette\Forms\Container*/ $form, Field $field)
 	{
 		// todo vymyslet lepsi customizovatelnost
 

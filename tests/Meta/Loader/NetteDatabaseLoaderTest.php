@@ -19,12 +19,9 @@ class NetteDatabaseLoaderTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$driverMeta = require __DIR__ . '/../../fixtures/ndbdata.php';
-		$driverMock = $this->getMockBuilder('Nette\Database\Drivers\MySqlDriver')
-			->disableOriginalConstructor()->getMock();
-		$driverMock->expects($this->once())
-			->method('getColumns')
-			->with($this->equalTo('blog'))
-			->will($this->returnValue($driverMeta));
+		$driverMock = \Mockista\mock(/*'Nette\Database\Drivers\MySqlDriver'*/);
+		$driverMock->getColumns('blog')->once->andReturn($driverMeta);
+		$driverMock->freeze();
 
 		$this->metadata = new \NFormBuilder\Meta\Metadata();
 		$this->object = new \NFormBuilder\Meta\Loader\NetteDatabaseLoader($driverMock);

@@ -17,7 +17,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$this->form = new \Nette\Forms\Container();
+		$this->form = \Mockista\mock(/*'Nette\Forms\Container'*/);
 
 		$meta = new \NFormBuilder\Meta\Metadata();
 
@@ -43,32 +43,28 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
 	public function testAdd()
 	{
+		$nameMock = \Mockista\mock();
+		$nameMock->setRequired();
+		$nameMock->freeze();
+
+		$this->form->addText('name', NULL, NULL, NULL)->once->andReturn($nameMock);
+		$this->form->addCheckbox('allowed', NULL)->once;
+		$this->form->freeze();
+
 		$this->object->add('name', 'allowed');
-		$this->assertEquals(2, count($this->form->getComponents()));
-	}
 
-	public function testBoolean()
-	{
-		$this->object->add('allowed');
-		$this->assertInstanceOf('Nette\Forms\Controls\Checkbox', $this->form['allowed']);
-	}
-
-	public function testString()
-	{
-		$this->object->add('name');
-		$this->assertInstanceOf('Nette\Forms\Controls\TextInput', $this->form['name']);
+		$nameMock->assertExpectations();
+		$this->form->assertExpectations();
 	}
 
 	public function testText()
 	{
-		$this->object->add('text');
-		$this->assertInstanceOf('Nette\Forms\Controls\TextArea', $this->form['text']);
-	}
+		$this->form->addTextArea('text', 'Text:');
+		$this->form->freeze();
 
-	public function testRequired()
-	{
-		$this->object->add('name');
-		$this->assertTrue($this->form['name']->isRequired());
+		$this->object->add('text');
+
+		$this->form->assertExpectations();
 	}
 
 	/**

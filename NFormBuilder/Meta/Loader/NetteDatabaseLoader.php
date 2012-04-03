@@ -14,7 +14,7 @@ class NetteDatabaseLoader implements ILoader
 	/** @var \Nette\Database\ISupplementalDriver */
 	private $driver;
 
-	public function __construct(\Nette\Database\ISupplementalDriver $driver)
+	public function __construct(/*\Nette\Database\ISupplementalDriver*/ $driver)
 	{
 		$this->driver = $driver;
 	}
