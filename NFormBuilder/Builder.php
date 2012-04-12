@@ -3,6 +3,7 @@
 namespace NFormBuilder;
 
 use NFormBuilder\Meta\Field;
+use Nette\Forms\Form;
 
 /**
  * @author Jan Marek
@@ -33,6 +34,8 @@ class Builder
 
 			$this->addField($this->form, $this->metadata->fields[$n]);
 		}
+
+		return $this;
 	}
 
 	protected function addField(\Nette\Forms\Container $form, Field $field)
@@ -78,12 +81,23 @@ class Builder
 		foreach ($field->rules as $rule) {
 			switch ($rule['type']) {
 				case Field::VALIDATION_REQUIRED:
-					$input->setRequired();
+					$input->setRequired(/* todo message */);
+					break;
+				case Field::VALIDATION_MAX_LENGTH:
+					// todo
 					break;
 				default:
 					throw new \Nette\InvalidArgumentException("Unsupported validation type '$rule[type]'.");
 			}
 		}
+	}
+
+	/**
+	 * @return \Nette\Forms\Container
+	 */
+	public function getForm()
+	{
+		return $this->form;
 	}
 
 }

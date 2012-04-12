@@ -43,6 +43,7 @@ class NetteDatabaseLoader implements ILoader
 		/* @var \NFormBuilder\Meta\Field $field */
 		$field = $meta->fields[$name] = isset($meta->fields[$name]) ? $meta->fields[$name] : new Field();
 
+		$field->name = $name;
 		$field->type = $this->guessType($column);
 		$this->addRules($field, $column);
 
