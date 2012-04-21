@@ -7,7 +7,7 @@ use NFormBuilder\Meta\Field;
 /**
  * @author Jan Marek
  */
-class NetteDatabaseLoaderTest extends \PHPUnit_Framework_TestCase
+class NetteDatabaseLoaderTest extends \NFormBuilder\Test\BaseTestCase
 {
 
 	/** @var \NFormBuilder\Meta\Loader\NetteDatabaseLoader */
@@ -19,7 +19,7 @@ class NetteDatabaseLoaderTest extends \PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$driverMeta = require __DIR__ . '/../../fixtures/ndbdata.php';
-		$driverMock = \Mockista\mock('Nette\Database\Drivers\MySqlDriver');
+		$driverMock = $this->createMockista('Nette\Database\Drivers\MySqlDriver');
 		$driverMock->getColumns('blog')->once->andReturn($driverMeta);
 		$driverMock->freeze();
 

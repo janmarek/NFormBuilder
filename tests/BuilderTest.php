@@ -7,7 +7,7 @@ use NFormBuilder\Meta\Field;
 /**
  * @author Jan Marek
  */
-class BuilderTest extends \PHPUnit_Framework_TestCase
+class BuilderTest extends BaseTestCase
 {
 
 	/** @var \NFormBuilder\Builder */
@@ -17,7 +17,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
 	protected function setUp()
 	{
-		$this->form = \Mockista\mock('Nette\Forms\Container');
+		$this->form = $this->createMockista('Nette\Forms\Container');
 
 		$meta = new \NFormBuilder\Meta\Metadata();
 
@@ -43,7 +43,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 
 	public function testAdd()
 	{
-		$nameMock = \Mockista\mock();
+		$nameMock = $this->createMockista();
 		$nameMock->setRequired();
 		$nameMock->freeze();
 
@@ -52,9 +52,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 		$this->form->freeze();
 
 		$this->object->add('name', 'allowed');
-
-		$nameMock->assertExpectations();
-		$this->form->assertExpectations();
 	}
 
 	public function testText()
@@ -63,8 +60,6 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
 		$this->form->freeze();
 
 		$this->object->add('text');
-
-		$this->form->assertExpectations();
 	}
 
 	/**

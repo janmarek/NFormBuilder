@@ -2,6 +2,8 @@
 
 require __DIR__ . '/../vendor/nette/nette/Nette/loader.php';
 
+require __DIR__ . '/BaseTestCase.php';
+
 require __DIR__ . '/Mockista/bootstrap.php';
 
 $baseDir = __DIR__ . '/../NFormBuilder';
